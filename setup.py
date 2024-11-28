@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="PBF-US1",
+    name="PBFUS1",
     version="0.1.0",
     description="A package to handle and process ultrasound image datasets of fetal planes",
     author="Juan Pablo Barrientos",

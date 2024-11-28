@@ -1,8 +1,8 @@
 # NatalIA: PBF-US1 (Phantom Blind-sweeps for Fetal Ultrasound Scanning)
 
-<p style="margin-bottom: 100px;">
-<img src="assets/logo-Galileo.png" height= "80px" alt="logo Galileo" style="position: absolute;">
-<img src="assets/logo-CLIAS.png" height="80px" alt="logo CLIAS" style="float: right; position: absolute; right: 35px;">
+<p style="margin-bottom: 120px;">
+<img src="assets/logo-Galileo.png" height= "80px" alt="logo Galileo" style="position: absolute; background: white; padding: 10px; border-radius: 10px">
+<img src="assets/logo-CLIAS_horizontal_v1-rgb.png" height="80px" alt="logo CLIAS" style="float: right; position: absolute; background: white; right: 35px; padding: 10px; border-radius: 10px">
 </p>
 
 ## Overview
@@ -18,7 +18,7 @@ This Python package provides a collection of standard fetal planes generated usi
   - Femur.
   - Spine.
 - **Phantom Device Simulation**: The images are generated using a phantom device, providing realistic simulated fetal anatomy of a 23 weeks fetus. The fetus orientation and presentation was changed in four different poses.
-- **Free-Hand Ultrasound**: To gather all the collected images volunteers without prior experience in ultaround performe a free-hand procolo consisting in four diferent sweeps:
+- **Free-Hand Ultrasound**: To gather all the collected images volunteers without prior experience in ultaround performe a free-hand protocol consisting in four diferent sweeps:
   - 1 Vertical.
   - 1 Horizontal.
   - 2 Diagonal.
@@ -38,32 +38,42 @@ You can install the package via pip:
 ## Usage
 
 ```python
-from FetalPlanesFreeHand.data_loader import download_dataset, load_images_with_metadata
-from FetalPlanesFreeHand.metadata import count_elements_per_class, get_images_by_class_value, plot_random_images
+from PBFUS1.metadata import count_elements_per_class, get_images_by_class_value, plot_random_images, load_studies_metadata
+from PBFUS1.data_loader import download_dataset, load_images_info
 
-# Load standard fetal planes with the metadata
+# Download dataset
 download_dataset()
-standard_planes = load_images_with_metadata()
+## Downloading dataset: 260091it [00:05, 44607.73it/s]
+## Dataset downloaded and extracted to ./data
+
+#Load images info
+images_df = load_images_info()
+images_df.head()
+## file_name	studie	class	value	image
+## 0	cineframe_100_2024-05-03T12-19-10.jpeg	Obstetrics Exam - 03-May-2024_1216_PM	Biparietal standard plane	0	./data/Obstetrics Exam - 03-May-2024_1216_PM/c...
+##1	cineframe_147_2024-05-02T08-37-43.jpeg	Obstetrics Exam - 02-May-2024_817_AM	Biparietal standard plane	0	./data/Obstetrics Exam - 02-May-2024_817_AM/ci...
+##2	cineframe_146_2024-05-02T08-37-43.jpeg	Obstetrics Exam - 02-May-2024_817_AM	Biparietal standard plane	0	./data/Obstetrics Exam - 02-May-2024_817_AM/ci...
+##3	cineframe_106_2024-05-03T15-03-07.jpeg	Obstetrics Exam - 03-May-2024_300_PM	Biparietal standard plane	0	./data/Obstetrics Exam - 03-May-2024_300_PM/ci...
+##4	cineframe_150_2024-05-02T08-57-41.jpeg	Obstetrics Exam - 02-May-2024_854_AM	Biparietal standard plane	0	./data/Obstetrics Exam - 02-May-2024_854_AM/ci...
+
+# load studies metadata
+studies_df = load_studies_metadata()
+studies_df.head()
+## 	Study Name	protocol	position	Age	Gender	Level of Education	Ultrasound Experience	Years of Experience	Race/Ethnicity	Visual Impairment	specify	dominant hand
+## 0	Obstetrics Exam - 02-May-2024_1144_AM	Vertical	OA	20	Female	High School	1	0	Hispanic	Yes	Astigmatism and Myopia	Right-handed
+## 1	Obstetrics Exam - 02-May-2024_1159_AM	Horizontal	OA	20	Female	High School	1	0	Hispanic	Yes	Astigmatism and Myopia	Right-handed
+## 2	Obstetrics Exam - 02-May-2024_1204_PM	Diagonal /	OA	22	Female	High School	1	0	Hispanic	No	NaN	Right-handed
+## 3	Obstetrics Exam - 02-May-2024_1209_PM	Diagonal	OA	22	Female	High School	1	0	Hispanic	No	NaN	Right-handed
+## 4	Obstetrics Exam - 02-May-2024_1212_PM	Vertical	OA	23	Female	High School	1	0	Hispanic	No	NaN	Right-handed
+
 
 class_count = count_elements_per_class()
 ## Class 'Biparietal standard plane' (Value: 0): 42 elements
-## Class 'Abdominal standard plane' (Value: 1): 69 elements
-## Class 'Heart standard plane' (Value: 2): 58 elements
+## Class 'Abdominal standard plane' (Value: 1): 63 elements
+## Class 'Heart standard plane' (Value: 2): 61 elements
 ## Class 'Spine standard plane' (Value: 3): 134 elements
-## Class 'Femur standard plane' (Value: 4): 47 elements
-## Class 'Placenta' (Value: 5): 30 elements
-## Class 'No plane' (Value: 6): 19023 elements
-
-class_count
-## value
-## 0       42
-## 1       69
-## 2       58
-## 3      134
-## 4       47
-## 5       30
-## 6    19023
-## dtype: int64
+## Class 'Femur standard plane' (Value: 4): 46 elements
+## Class 'No plane' (Value: 5): 19061 elements
 
 class_value = 2
 images_by_class_value = get_images_by_class_value(class_value)
@@ -89,6 +99,17 @@ plot_random_images(5,fig_size=(15,2))
  <img src="assets/5ImagesPerClass.png" width="500" alt="5 random images per class">
 <p>
 
-## Use the planes for educational purposes, training simulations, or research
+## Licensing
 
-## This project was funded by CLIAS (Centro de Inteligencia Artificial y Salud para América Latina y el Caribe), an initiative of CIIPS (Centro de Implementación e Innovación de Políticas de Salud) at IECS (Instituto de Efectividad Clínica y Sanitaria), with support from IDRC (International Development Research Centre).
+Use the planes for educational purposes, training simulations, or research.
+
+## Acknowledgments
+
+This project was funded by CLIAS (Centro de Inteligencia Artificial y Salud para América Latina y el Caribe), an initiative of CIIPS (Centro de Implementación e Innovación de Políticas de Salud) at IECS (Instituto de Efectividad Clínica y Sanitaria), with support from IDRC (International Development Research Centre).
+
+## Contact
+
+For more information about the dataset or the package, feel free to contact:
+
+- **Douglas González** at [**duglasa@galileo.edu**](**mailto:duglasa@galileo.edu**)
+- **Juan Pablo Barrientos** at [**juan.barrientos@galileo.edu**](**mailto:juan.barrientos@galileo.edu**)
