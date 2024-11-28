@@ -1,9 +1,10 @@
 # NatalIA: PBF-US1 (Phantom Blind-sweeps for Fetal Ultrasound Scanning)
 
 <p style="margin-bottom: 120px;">
-<img src="assets/logo-Galileo.png" height= "80px" alt="logo Galileo" style="position: absolute; background: white; padding: 10px; border-radius: 10px">
-<img src="assets/logo-CLIAS_horizontal_v1-rgb.png" height="80px" alt="logo CLIAS" style="float: right; position: absolute; background: white; right: 35px; padding: 10px; border-radius: 10px">
+<img src="assets/combined_logos_reordered.png" height= "70" alt="logo Galileo" style="position: absolute; background: white; padding: 10px; border-radius: 10px">
 </p>
+
+In low-income countries, particularly in remote communities with a shortage of trained sonographers and high maternal mortality rates, developing AI tools to assist non-experts in accurately identifying relevant fetal planes and potential anomalies during ultrasound exams is crucial. This dataset includes 19407 ultrasound frames collected from 90 videos of a 23-week gestational age fetal ultrasound phantom, recorded through free-hand sweeps by non-experts. These data are valuable for advancing research on second-trimester pregnancies. The frames were extracted from videos captured using a point-of-care ultrasound (POCUS) device in obstetric mode, set to a maximum depth of 16 cm. In total, 45 volunteers with no prior ultrasound experience recorded the videos while following four predefined scanning paths: vertical, horizontal, and two diagonal trajectories, with four different fetal poses. This approach creates a dataset that reflects real-world variability in non-expert settings, simulating ultrasound exams conducted by untrained personnel.
 
 ## Overview
 
@@ -34,6 +35,10 @@ This Python package provides a collection of standard fetal planes generated usi
 ## Installation
 
 You can install the package via pip:
+
+```bash
+pip install PBFUS1
+```
 
 ## Usage
 
@@ -99,13 +104,37 @@ plot_random_images(5,fig_size=(15,2))
  <img src="assets/5ImagesPerClass.png" width="500" alt="5 random images per class">
 <p>
 
-## Licensing
+## Citation
 
-Use the planes for educational purposes, training simulations, or research.
+If you use this dataset, please cite it as follows:
+
+González, D., Barrientos, J. P., Perez, M., Fajardo, J., Reyna, F., & Lara, A. (2024). NatalIA: PBF-US1 (Phantom Blind-sweeps for Fetal Ultrasound Scanning) (1.0.0) [Data set]. Zenodo. [https://doi.org/10.5281/zenodo.14193949](https://doi.org/10.5281/zenodo.14193949)
+
+For BibTeX format:
+
+```bibtex
+@dataset{Gonzalez2024,
+  author       = {González, D. and Barrientos, J. P. and Perez, M. and Fajardo, J. and Reyna, F. and Lara, A.},
+  title        = {NatalIA: PBF-US1 (Phantom Blind-sweeps for Fetal Ultrasound Scanning)},
+  year         = {2024},
+  version      = {1.0.0},
+  publisher    = {Zenodo},
+  doi          = {10.5281/zenodo.14193949},
+  note         = {[Data set]},
+  url          = {https://doi.org/10.5281/zenodo.14193949}
+}
+
+```
 
 ## Acknowledgments
 
 This project was funded by CLIAS (Centro de Inteligencia Artificial y Salud para América Latina y el Caribe), an initiative of CIIPS (Centro de Implementación e Innovación de Políticas de Salud) at IECS (Instituto de Efectividad Clínica y Sanitaria), with support from IDRC (International Development Research Centre).
+
+## License
+
+Use the planes for educational purposes, training simulations, or research.
+
+![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)
 
 ## Contact
 
